@@ -1,0 +1,9 @@
+{
+  "folders": [
+    { "path": "." },
+    { "path": "../gateway" },
+    { "path": "../data-service" },
+    { "path": "../sync-service" },
+    { "path": "../frontend-web" }
+  ]
+}

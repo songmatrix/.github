@@ -1,0 +1,16 @@
+name: On create issue
+
+on:
+  issues:
+    types:
+      - opened
+
+jobs:
+  add-to-project:
+    name: Add issue to project
+    runs-on: self-hosted
+
+    steps:
+      - uses: actions/add-to-project@v0.4.0
+        with:
+          project-url: ${{ vars.PROJECT_URL }}
