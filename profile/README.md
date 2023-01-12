@@ -7,8 +7,8 @@ Full stack music service provider and player
 
 ## Architecture
 
-<img src="./music-service-Architecture.drawio.png" />
+<img src="https://raw.githubusercontent.com/songmatrix/.github/master/profile/music-service-Architecture.drawio.png" />
 
 ## ER
 
-<img src="./music-service-ER.drawio.png" />
+<img src="https://raw.githubusercontent.com/songmatrix/.github/master/profile/music-service-ER.drawio.png" />
