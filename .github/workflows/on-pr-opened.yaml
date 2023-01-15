@@ -11,7 +11,7 @@ jobs:
     runs-on: self-hosted
 
     steps:
-      - uses: actions/github-script
+      - uses: actions/github-script@v6
         env:
           owner: ${{ github.repository_owner }}
           repo: ${{ github.event.pull_request.repository.name }}
