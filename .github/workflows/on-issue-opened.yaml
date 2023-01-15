@@ -1,4 +1,4 @@
-name: On create issue
+name: On issue opened
 
 on:
   issues:

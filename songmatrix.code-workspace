@@ -1,6 +1,6 @@
 {
   "folders": [
-    { "path": "." },
+    { "path": "./.github" },
     { "path": "../gateway" },
     { "path": "../data-service" },
     { "path": "../sync-service" },

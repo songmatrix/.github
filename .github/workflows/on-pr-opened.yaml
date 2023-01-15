@@ -1,0 +1,25 @@
+name: On PR opened
+
+on:
+  pull_request:
+    types:
+      - opened
+
+jobs:
+  set-assignee:
+    name: Set assignee
+    runs-on: self-hosted
+
+    steps:
+      - uses: actions/github-script
+        env:
+          owner: ${{ github.repository_owner }}
+          repo: ${{ github.event.pull_request.repository.name }}
+          issue_number: ${{ github.event.pull_request.number }}
+        with:
+          script: |
+            github.rest.issues.addAssignees({
+              owner: process.env.owner,
+              repo: process.env.repo,
+              issue_number: process.env.issue_number,
+            })
