@@ -2,8 +2,8 @@ name: On PR opened
 
 on:
   pull_request:
-    types:
-      - opened
+    # types:
+    #   - opened
 
 jobs:
   set-assignee:
