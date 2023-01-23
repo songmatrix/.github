@@ -18,8 +18,29 @@ jobs:
           issue_number: ${{ github.event.pull_request.number }}
         with:
           script: |
-            github.rest.issues.addAssignees({
-              owner: process.env.owner,
-              repo: process.env.repo,
-              issue_number: process.env.issue_number,
-            })
+            console.log(JSON.stringify(context, null, 2));
+
+            const query = `query($owner:String!, $name: $String!, $prNumber:String!){
+              repository(owner: "songmatrix", name: "sync-service") {
+                pullRequest(number: 4) {
+                  closingIssuesReferences(first: 1) {
+                    edges {
+                      node {
+                        number
+                      }
+                    }
+                  }
+                }
+              }
+            }  
+            }`;
+
+            const variables = {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              prNumber: context.event.pull_request.number,
+            };
+
+            const result = await github.graphql(query, variables);
+
+            console.log(JSON.stringify(result, null, 2));
