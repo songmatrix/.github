@@ -17,8 +17,9 @@ jobs:
           repo: ${{ github.event.pull_request.repository.name }}
           issue_number: ${{ github.event.pull_request.number }}
         with:
+          # const query = `query($owner: String!, $name: String!, $prNumber: Int!) {
           script: |
-            const query = `query($owner: String!, $name: String!, $prNumber: Int!) {
+            const query = `query {
               repository(owner: "songmatrix", name: "sync-service") {
                 pullRequest(number: 4) {
                   closingIssuesReferences(first: 1) {
@@ -41,3 +42,4 @@ jobs:
             const result = await github.graphql(query, variables);
 
             console.log(JSON.stringify(result, null, 2));
+            console.log(result.data.repository.pullRequest.closingIssueReferences.edges.map((edge) => edge.node.number));
