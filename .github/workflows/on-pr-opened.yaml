@@ -11,35 +11,8 @@ jobs:
     runs-on: self-hosted
 
     steps:
-      - uses: actions/github-script@v6
-        env:
+      - uses: ./.github/actions/set-pr-issue-assignee
+        with:
           owner: ${{ github.repository_owner }}
           repo: ${{ github.event.pull_request.repository.name }}
-          issue_number: ${{ github.event.pull_request.number }}
-        with:
-          # const query = `query($owner: String!, $name: String!, $prNumber: Int!) {
-          script: |
-            const query = `query {
-              repository(owner: "songmatrix", name: "sync-service") {
-                pullRequest(number: 4) {
-                  closingIssuesReferences(first: 1) {
-                    edges {
-                      node {
-                        number
-                      }
-                    }
-                  }
-                }
-              }
-            }`;
-
-            const variables = {
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              prNumber: context.payload.pull_request.number,
-            };
-
-            const result = await github.graphql(query, variables);
-
-            console.log(JSON.stringify(result, null, 2));
-            console.log(result.data.repository.pullRequest.closingIssueReferences.edges.map((edge) => edge.node.number));
+          pr-number: ${{ github.event.pull_request.number }}

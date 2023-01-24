@@ -1,0 +1,31 @@
+name: Set PR Issue Assignee
+description: Assigns the commit authors of a PR to the linked issue
+
+inputs:
+  owner:
+    required: true
+    description: repository owner
+  repo:
+    required: true
+    description: repository name
+  pr-number:
+    required: true
+    description: pull request number
+
+runs:
+  using: composite
+  steps:
+    - uses: actions/github-script@v6
+      env:
+        owner: ${{ inputs.owner }}
+        repo: ${{ inputs.repo }}
+        pr_number: ${{ inputs.pr-number }}
+      with:
+        script: |
+          await require("${{ github.action_path }}/script.js")({
+            github,
+            core,
+            owner: process.env.owner, 
+            repo: process.env.repo, 
+            prNumber: process.env.pr_number, 
+          });
