@@ -19,3 +19,9 @@ jobs:
 
       - continue-on-error: true
         run: aws sts get-caller-identity
+
+      - continue-on-error: true
+        run: whoami
+
+      - continue-on-error: true
+        run: id
