@@ -1,6 +1,8 @@
 name: On issue opened
 
 on:
+  workflow_call:
+
   issues:
     types:
       - opened

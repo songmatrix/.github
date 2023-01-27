@@ -1,0 +1,9 @@
+on: push
+
+jobs:
+  test:
+    runs-on: self-hosted
+
+    steps:
+      - run: which kubectl
+      - run: kubectl get pods --all-namespaces
