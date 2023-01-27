@@ -5,5 +5,17 @@ jobs:
     runs-on: self-hosted
 
     steps:
-      - run: which kubectl
-      - run: kubectl get pods --all-namespaces
+      - continue-on-error: true
+        run: which kubectl
+
+      - continue-on-error: true
+        run: kubectl get pods --namespace songmatrix
+
+      - continue-on-error: true
+        run: kubectl get pods --namespace actions-runner-system
+
+      - continue-on-error: true
+        run: which aws
+
+      - continue-on-error: true
+        run: aws sts get-caller-identity
