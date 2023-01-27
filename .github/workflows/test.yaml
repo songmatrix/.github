@@ -1,0 +1,27 @@
+on: push
+
+jobs:
+  test:
+    runs-on: self-hosted
+
+    steps:
+      - continue-on-error: true
+        run: which kubectl
+
+      - continue-on-error: true
+        run: kubectl get pods --namespace songmatrix
+
+      - continue-on-error: true
+        run: kubectl get pods --namespace actions-runner-system
+
+      - continue-on-error: true
+        run: which aws
+
+      - continue-on-error: true
+        run: aws sts get-caller-identity
+
+      - continue-on-error: true
+        run: whoami
+
+      - continue-on-error: true
+        run: id
